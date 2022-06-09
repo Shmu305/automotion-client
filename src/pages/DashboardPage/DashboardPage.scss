@@ -1,0 +1,58 @@
+.dashboard{
+    padding: 2rem;
+    &__cols{
+        margin-top: 1rem;
+        display: flex;
+        width: 100%;
+        border-bottom: .0625rem solid black;
+        font-weight: 700;
+        &--label{
+            width: 20%;
+        }
+    }
+
+    &__row{
+
+        display: flex;
+        width: 100%;
+        border-bottom: .0625rem solid black;
+        &--data{
+            width: 20%;
+            //width: 20%;
+        }
+    }
+
+    &__averages, &__totals{
+        font-weight: 700;
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+        display: flex;
+        &--data{
+            width: 20%;
+        }
+   }
+   button{
+       margin-right: 2.5rem;
+       border-radius: 1rem;
+       padding: 0.25rem;
+       background-color: aquamarine;
+       &__btn-hover{
+           cursor: pointer;
+       }
+   }
+}
+
+.mainPageSearch{
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    &__input{
+        padding: 0.5rem;
+        border-radius: 1rem;
+    }
+    &__button{
+        background-color: lightgreen;
+        margin-left: 1rem;
+        border-radius: 1rem;
+    }
+}
