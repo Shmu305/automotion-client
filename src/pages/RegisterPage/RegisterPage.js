@@ -1,4 +1,4 @@
-// import './RegisterPage.scss';
+import './RegisterPage.scss';
 import React, { useState, useEffect} from 'react';
 import { Link, Navigate} from 'react-router-dom';
 import axios from 'axios';
@@ -16,7 +16,6 @@ function RegisterPage(){
     // Axios Handles Registration
     function handleSubmit (event) {
         event.preventDefault();
-        // const {userEmail, userPassword, userConfirmPassword} = {email,password, confirmPassword};
         axios
             .post("http://localhost:8080/register", {
                 userName,
@@ -49,18 +48,18 @@ function RegisterPage(){
         <div className='signUp'>
             <section className='signUp-wrapper'>
                 <form className='signUp__form' onSubmit={handleSubmit}>
-                    <h1 className='signUp__title'>Join the Team</h1>
-                    <input type="text" name="userName" label="Name" value={userName} onChange={event => setUserName(event.target.value)} />
-                    <input type="email" name="email" label="Email" value={email} onChange={event => setEmail(event.target.value)} />
-                    <input type="password" name="password" label="Password" value={password} onChange={event => setPassword(event.target.value)} />
-                    <input type="password" name="confirmPassword" label="Confirm Password" value={confirmPassword} onChange={event => setConfirmPassword(event.target.value)} />
+                    <h1 className='signUp__title'>Registration Form</h1>
+                    <input className='signUp__form--input' type="text" name="userName" placeholder="Name" value={userName} onChange={event => setUserName(event.target.value)} />
+                    <input className='signUp__form--input' type="email" name="email" placeholder="Email" value={email} onChange={event => setEmail(event.target.value)} />
+                    <input className='signUp__form--input' type="password" name="password" placeholder="Password" value={password} onChange={event => setPassword(event.target.value)} />
+                    <input className='signUp__form--input' type="password" name="confirmPassword" placeholder="Confirm Password" value={confirmPassword} onChange={event => setConfirmPassword(event.target.value)} />
 
                     <button className='signUp__btn' type="submit">Register</button>
                     {success && <span className="signUp__message">Signed up!</span>}
                     {error && <span className="signUp__message">{error}</span>}
                     <div className='signUp__login'>
                         <p className='signUp__login__body'>Already have an account?</p>
-                        <Link to="/" className='signUp__login__link'>Login</Link>
+                        <Link to="/login" className='signUp__login__link'>Login</Link>
                     </div>
                 </form>
             </section>

@@ -1,6 +1,7 @@
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 import Dashboard from '../src/pages/DashboardPage/DashboardPage';
 import RegisterPage from '../src/pages/RegisterPage/RegisterPage';
+import LoginPage from '../src/pages/LoginPage/LoginPage';
 import './App.scss';
 
 
@@ -9,7 +10,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<RegisterPage/>}/>
-        {/* <Route path='/login' element={<Login/>}/> */}
+        <Route path='/login' element={<LoginPage/>}/>
         <Route path='/dashboard' element={<Dashboard/>}/>
       </Routes>
     </BrowserRouter>

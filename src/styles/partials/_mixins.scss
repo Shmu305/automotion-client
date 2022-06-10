@@ -1,0 +1,17 @@
+@use 'variables' as *;
+
+// Responsive Design Mixins
+/*Tablet Mixin = {640px or 40rem}*/
+@mixin tablet {
+    @media screen and (min-width: $Tablet-Breakpoint) {
+        @content;
+    }
+}
+
+/*Desktop Mixin = {1024px or 64rem}*/
+@mixin desktop {
+    @media screen and (min-width: $Desktop-Breakpoint) {
+        @content;
+    }
+}
+

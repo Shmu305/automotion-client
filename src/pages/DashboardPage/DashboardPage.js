@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Navigate} from 'react-router-dom';
 import './DashboardPage.scss';
 
 function DashboardPage(){
@@ -10,8 +10,8 @@ function DashboardPage(){
     const [userInput, setUserInput] = useState('');
     const [location, setLocation] = useState(null);
     const [locationData, setlocationData] = useState(null);
-    const [maxSortedLowToHi, setMaxLowToHi] = useState(false);
-    const [minSortedLowToHi, setMinLowToHi] = useState(false);
+    const [maxSortedLowToHi, setMaxSortedLowToHi] = useState(false);
+    const [minSortedLowToHi, setMinSortedLowToHi] = useState(false);
     const [rainfallLowToHi, setRainfallLowToHi] = useState(false);
     const [todaysDateFirst, setTodaysDateFirst] = useState(true)
     const [failedAuth, setFailedAuth] = useState(false);
@@ -31,13 +31,19 @@ function DashboardPage(){
             })
             .then((response) => {
                 console.log(response);
-                setCurrUser(response.user.name);
+                setCurrUser(response.data.name);
             })
             .catch(() => {
                 setFailedAuth(true);
             });
     }, []);
     
+
+    function handleLogout() {
+        sessionStorage.removeItem("token");
+        setCurrUser(null);
+        setFailedAuth(true);
+    };
 
     function getlocationData(event){
         event.preventDefault();
@@ -65,10 +71,10 @@ function DashboardPage(){
 
     function renderRows(){
         rows= locationData.map((day, index) => {
-            let date = day.date.replace(/-/g,"/");
+            let date = day.date.replace(/-/g,"/").slice(2);
             return (
             <section className='dashboard__row' key={index}>
-                <p className='dashboard__row--data dashboard__row--data-mobile'>{date}</p>
+                <p className='dashboard__row--data-date dashboard__row--data-mobile'>{date}</p>
                 <p className='dashboard__row--data'>{day.day.maxtemp_f}</p>
                 <p className='dashboard__row--data'>{day.day.mintemp_f}</p>
                 <p className='dashboard__row--data'>{day.day.totalprecip_in}</p>
@@ -104,19 +110,19 @@ function DashboardPage(){
             }
         })
         setlocationData(sortedData)
-        setMaxLowToHi(!maxSortedLowToHi)
+        setMaxSortedLowToHi(!maxSortedLowToHi)
     }
 
     function onMinTmpTogglerClick(){
         const sortedData = [...locationData].sort((a, b)=>{
             if(!minSortedLowToHi){
-                return a.day.maxtemp_f - b.day.maxtemp_f;
+                return a.day.mintemp_f - b.day.mintemp_f;
             }else{
-                return b.day.maxtemp_f - a.day.maxtemp_f;
+                return b.day.mintemp_f - a.day.mintemp_f;
             }
         })
         setlocationData(sortedData)
-        setMinLowToHi(!minSortedLowToHi)
+        setMinSortedLowToHi(!minSortedLowToHi)
     }
     
     function onRainfallTogglerClick(){
@@ -158,9 +164,9 @@ function DashboardPage(){
         }
         return(
         <>
-        <nav>
-            <h1>welcome, {currUser}</h1>
-            <Link to='#'>logout</Link>
+        <nav className='dashboard__header'>
+            <h1 className='dashboard__header--title'>welcome, {currUser}</h1>
+            <button className='dashboard__header--button' onClick={handleLogout}>logout</button>
         </nav>
         <form className='mainPageSearch' onSubmit={getlocationData}>
             <input className='mainPageSearch__input' required type='text' name='locationData' placeholder='Enter city or zip code'
@@ -170,8 +176,14 @@ function DashboardPage(){
         {locationData &&
         <section className='dashboard'>
             <p>Displaying Data for: {location}</p>
+            <section className='dashboard__togglers'>
+                <button className='btn-hover' onClick={onMaxTmpTogglerClick}>max-temp toggler</button>
+                <button className='btn-hover' onClick={onMinTmpTogglerClick}>min-temp toggler</button>
+                <button className='btn-hover' onClick={onRainfallTogglerClick}>rainfall toggler</button>
+                <button className='btn-hover' onClick={dateTogglerClick}>date toggler</button>
+            </section>
             <section className='dashboard__cols'>
-                <p className='dashboard__cols--label'>Date (y/m/d)</p>
+                <p className='dashboard__cols--label-date'>Date (y/m/d)</p>
                 <p className='dashboard__cols--label'>Hi (F)</p>
                 <p className='dashboard__cols--label'>Low (F)</p>
                 <p className='dashboard__cols--label'>Rain (in.)</p>
@@ -181,24 +193,20 @@ function DashboardPage(){
                 {rows}
             </section>
             <section className='dashboard__averages'>
-                <p className='dashboard__averages--data'>3-day Avg:</p>
+                <p className='dashboard__averages--data-tot'>3-day Avg:</p>
                 <p className='dashboard__averages--data'>{averages.maxTmpAvg.toFixed(2)}</p>
                 <p className='dashboard__averages--data'>{averages.minTmpAvg.toFixed(2)}</p>
                 <p className='dashboard__averages--data'>{averages.rainFallAvgInches.toFixed(2)}</p>
                 <p className='dashboard__averages--data'>{averages.rainFallAvgMM.toFixed(2)}</p>
             </section>
             <section className='dashboard__totals'>
-                <p className='dashboard__averages--data'>3-day total:</p>
+                <p className='dashboard__averages--data-tot'>3-day total:</p>
                 <p className='dashboard__averages--data'>N/A</p>
                 <p className='dashboard__averages--data'>N/A</p>
                 <p className='dashboard__averages--data'>{curRainFallSumInches.toFixed(2)}</p>
                 <p className='dashboard__averages--data'>{curRainFallSumMM.toFixed(2)}</p>
 
             </section>
-            <button className='btn-hover' onClick={onMaxTmpTogglerClick}>max-temp toggler</button>
-            <button className='btn-hover' onClick={onMinTmpTogglerClick}>min-temp toggler</button>
-            <button className='btn-hover' onClick={onRainfallTogglerClick}>rainfall toggler</button>
-            <button className='btn-hover' onClick={dateTogglerClick}>date toggler</button>
         </section>
         }
         </>

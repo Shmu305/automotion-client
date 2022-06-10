@@ -1,5 +1,13 @@
+@use '../../styles/partials/variables' as *;
+
 .dashboard{
+
     padding: 2rem;
+
+    &__togglers{
+        margin-top: 0.75rem;
+    }
+
     &__cols{
         margin-top: 1rem;
         display: flex;
@@ -8,6 +16,9 @@
         font-weight: 700;
         &--label{
             width: 20%;
+            &-date{
+                width: 35%;
+            }
         }
     }
 
@@ -18,8 +29,11 @@
         border-bottom: .0625rem solid black;
         &--data{
             width: 20%;
-            //width: 20%;
+            &-date{
+                width: 35%;
+            }
         }
+
     }
 
     &__averages, &__totals{
@@ -29,15 +43,36 @@
         display: flex;
         &--data{
             width: 20%;
+            &-tot{
+                width: 35%;
+            }
         }
    }
    button{
        margin-right: 2.5rem;
+       margin-bottom: 0.5rem;
        border-radius: 1rem;
        padding: 0.25rem;
-       background-color: aquamarine;
+       background-color: $Primary-Blue;
+       color: white;
        &__btn-hover{
            cursor: pointer;
+       }
+   }
+
+   &__header{
+       padding-top: 1rem;
+       padding-right: 2rem;
+       display: flex;
+       justify-content: flex-end;
+       &--title{
+           margin-right: 1rem;
+       }
+       &--button{
+        border-radius: 1rem;
+        padding: 0.25rem;
+        background-color: $Primary-Blue;
+        color: white;
        }
    }
 }
@@ -51,7 +86,8 @@
         border-radius: 1rem;
     }
     &__button{
-        background-color: lightgreen;
+        color: white;
+        background-color: $Primary-Blue;
         margin-left: 1rem;
         border-radius: 1rem;
     }
