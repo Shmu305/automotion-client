@@ -39,7 +39,7 @@ function LoginPage(){
                 <input className="loginForm__form--input" type="password" name="password" placeholder="Password" value={password} onChange={event => setPassword(event.target.value)} />
                 <button className='loginForm__btn' type="submit">Login</button>
                 {success && <Navigate to='/dashboard' />}
-                {error && <p>{error}</p>}
+                {error && <p className='loginForm__error'>{error}</p>}
                 <div className='loginForm__register'>
                     <p className='loginForm__register__body'>Not Registered?</p>
                     <Link to="/" className='loginForm__register__link'>Register Here</Link>
