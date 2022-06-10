@@ -1,17 +1,17 @@
 # Exploring WeatherAPI with React and JWT authentication
 
-## Available Scripts
+## Built with: 
 
-In the project directory, you can run:
+### Front-End
+[![My Skills](https://skillicons.dev/icons?i=react,js,sass,jwt )](https://skillicons.dev/)
 
-### `npm start`
+### Back-End
+[![My Skills](https://skillicons.dev/icons?i=express,mysql,nodejs, jwt)](https://skillicons.dev)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## Run Locally
 
-### Explore WeatherAPI Client
+### Explore WeatherAPI Client Side
 Clone the project
 
 ```bash
@@ -21,7 +21,7 @@ git clone https://github.com/Shmu305/automotion-client.git
 Go to the project directory
 
 ```bash
-  cd automotion-app
+  cd automotion-client
 ```
 
 Install dependencies
@@ -29,7 +29,16 @@ Install dependencies
 ```bash
   npm install
 ```
-### Server
+
+In the project directory client, you can now run:
+
+```bash
+    npm start
+```
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+### Explore WeatherAPI Server Side
 Clone the project
 
 ```bash
@@ -58,3 +67,4 @@ Run the script on server terminal.
 ```bash
     node index.js
 ```
+
