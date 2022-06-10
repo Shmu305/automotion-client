@@ -3,10 +3,17 @@
 ## Built with: 
 
 ### Front-End
+React, JavaScript, Sass
 [![My Skills](https://skillicons.dev/icons?i=react,js,sass)](https://skillicons.dev/)
 
 ### Back-End
+Express, mySQL, Node
 [![My Skills](https://skillicons.dev/icons?i=express,mysql,nodejs)](https://skillicons.dev)
+
+### Code Editor
+VSCode
+[![My Skills](https://skillicons.dev/icons?i=vscode)](https://skillicons.dev)
+
 
 
 ## Run Locally
