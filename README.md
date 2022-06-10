@@ -74,7 +74,3 @@ Run the script on server terminal.
 ```bash
     node index.js
 ```
-<<<<<<< HEAD
-=======
-
->>>>>>> 7095a580cad6ef27eb0a58d18113a979ab1cc656
