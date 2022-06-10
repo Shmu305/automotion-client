@@ -29,17 +29,17 @@ Install dependencies
 ```bash
   npm install
 ```
-### Dashboard Analytics Server
+### Server
 Clone the project
 
 ```bash
-  git clone https://github.com/Nicholas-Nguyen8742/Orlando-Magic-Dashboard-Server
+  git clone https://github.com/Shmu305/automotion-server.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd vertigo-network-server
+  cd automotion-server
 ```
 
 Install dependencies
@@ -54,7 +54,7 @@ Run knex migrations & seeds to setup & populate the mySQL server.
     npx knex seed:run
 ```
 
-Run the script on vertigo-network-server terminal.
+Run the script on server terminal.
 ```bash
     node index.js
 ```
