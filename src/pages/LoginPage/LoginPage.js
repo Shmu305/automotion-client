@@ -9,8 +9,8 @@ function LoginPage(){
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState(false);
-    const [user, setUser] = useState('');
 
+    //function to POST login credentials to login API
     function handleSubmit(event) {
         event.preventDefault();
         axios
@@ -18,6 +18,7 @@ function LoginPage(){
                 email,
                 password
             })
+            //if the credentials are valid, store them in session storage for later use
             .then((response) => {
                 sessionStorage.setItem("token", response.data.token);
                 setSuccess(true)
@@ -29,24 +30,24 @@ function LoginPage(){
     };
 
 
-        return (
-            <div className='loginForm'>
-            <section className='loginForm-wrapper'>
-                <form className="loginForm__form" onSubmit={handleSubmit}>
-                    <h1 className="loginForm__title">Login</h1>
-                    <input className="loginForm__form--input" type="text" name="email" placeholder="Email" value={email} onChange={event => setEmail(event.target.value)}/>
-                    <input className="loginForm__form--input" type="password" name="password" placeholder="Password" value={password} onChange={event => setPassword(event.target.value)} />
-                    <button className='loginForm__btn' type="submit">Login</button>
-                    {success && <Navigate to='/dashboard' />}
-                    {error && <p>{error}</p>}
-                    <div className='loginForm__register'>
-                        <p className='loginForm__register__body'>Not Registered?</p>
-                        <Link to="/" className='loginForm__register__link'>Register Here</Link>
-                    </div>
-                </form>
-            </section>
-            </div>
-        );
+    return (
+        <div className='loginForm'>
+        <section className='loginForm-wrapper'>
+            <form className="loginForm__form" onSubmit={handleSubmit}>
+                <h1 className="loginForm__title">Login</h1>
+                <input className="loginForm__form--input" type="text" name="email" placeholder="Email" value={email} onChange={event => setEmail(event.target.value)}/>
+                <input className="loginForm__form--input" type="password" name="password" placeholder="Password" value={password} onChange={event => setPassword(event.target.value)} />
+                <button className='loginForm__btn' type="submit">Login</button>
+                {success && <Navigate to='/dashboard' />}
+                {error && <p>{error}</p>}
+                <div className='loginForm__register'>
+                    <p className='loginForm__register__body'>Not Registered?</p>
+                    <Link to="/" className='loginForm__register__link'>Register Here</Link>
+                </div>
+            </form>
+        </section>
+        </div>
+    );
 
 }
 

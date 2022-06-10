@@ -58,6 +58,7 @@ function DashboardPage(){
         setUserInput('');
     }
 
+    //initialize variables needed for calculations
     let rows = null;
     let curMaxTmpSum = 0
     let maxTmpAvg = 0;
@@ -69,6 +70,7 @@ function DashboardPage(){
     let rainFallAvgMM = 0;
     let averages = null;
 
+    //function to store an array of rows containing data for each day in the location data array
     function renderRows(){
         rows= locationData.map((day, index) => {
             let date = day.date.replace(/-/g,"/").slice(2);
@@ -87,6 +89,7 @@ function DashboardPage(){
         renderRows();
     }
 
+    //store data in variables to be used for calculations
     if(rows){
         locationData.forEach((day, index)=> {
             curMaxTmpSum += day.day.maxtemp_f;
@@ -101,6 +104,7 @@ function DashboardPage(){
         averages = {maxTmpAvg, minTmpAvg, rainFallAvgInches, rainFallAvgMM};
     }
 
+    //toggles the 'hi-forecast' data from max temp to min temp and min to max
     function onMaxTmpTogglerClick(){
         const sortedData = [...locationData].sort((a, b)=>{
             if(!maxSortedLowToHi){
@@ -113,6 +117,7 @@ function DashboardPage(){
         setMaxSortedLowToHi(!maxSortedLowToHi)
     }
 
+    //toggles the 'min-forecast' data from min temp to max temp and max to min
     function onMinTmpTogglerClick(){
         const sortedData = [...locationData].sort((a, b)=>{
             if(!minSortedLowToHi){
@@ -125,6 +130,7 @@ function DashboardPage(){
         setMinSortedLowToHi(!minSortedLowToHi)
     }
     
+    //toggles the 'rain-forecast' data from min to max inches/mm and max to min inches/mm
     function onRainfallTogglerClick(){
         const sortedData = [...locationData].sort((a, b)=>{
             if(!rainfallLowToHi){
@@ -137,6 +143,7 @@ function DashboardPage(){
         setRainfallLowToHi(!rainfallLowToHi)
     }
 
+    //toggles the dates of the 3-day forecast from first day to last temp and last to first
     function dateTogglerClick(){
         const sortedData = [...locationData].sort((a, b)=>{
             if(!todaysDateFirst){
@@ -149,19 +156,21 @@ function DashboardPage(){
         setTodaysDateFirst(!todaysDateFirst);
     }
 
-        if(failedAuth){
-           return(
-            <main className="dashboard">
-                <p>You must be logged in to see this page. <Link to="/login">Log in</Link></p>
-            </main>
-            )
-        }
+    //conditional rendering checking if authentication faled
+    if(failedAuth){
+        return(
+        <main className="dashboard">
+            <p>You must be logged in to see this page. <Link to="/login">Log in</Link></p>
+        </main>
+        )
+    }
 
-        if(!currUser){
-            return(
-                <p>loading..</p>
-            )
-        }
+    //conditional rendering checking if current user state has been set
+    if(!currUser){
+        return(
+            <p>loading..</p>
+        )
+    }
         return(
         <>
         <nav className='dashboard__header'>
