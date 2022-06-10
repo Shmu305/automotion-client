@@ -21,7 +21,7 @@ git clone https://github.com/Shmu305/automotion-client.git
 Go to the project directory
 
 ```bash
-  cd automotion-client
+  cd automotion-app
 ```
 
 Install dependencies
