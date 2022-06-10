@@ -3,10 +3,10 @@
 ## Built with: 
 
 ### Front-End
-[![My Skills](https://skillicons.dev/icons?i=react,js,sass,jwt )](https://skillicons.dev/)
+[![My Skills](https://skillicons.dev/icons?i=react,js,sass)](https://skillicons.dev/)
 
 ### Back-End
-[![My Skills](https://skillicons.dev/icons?i=express,mysql,nodejs, jwt)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=express,mysql,nodejs)](https://skillicons.dev)
 
 
 ## Run Locally
